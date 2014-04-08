@@ -24,11 +24,6 @@ cryptocurrencies.
   without warning.
 
 
-### pool-algorithm
-
-Allows choosing the algorithm for a specific pool. See `algorithm`.
-
-
 ### nfactor
 
 Overrides the default scrypt parameter N, specified as the factor of 2
@@ -37,11 +32,6 @@ Overrides the default scrypt parameter N, specified as the factor of 2
 *Argument:* whole number (>1).
 
 *Default:* depends on `algorithm`; otherwise `10`.
-
-
-### pool-nfactor
-
-Overrides the default scrypt parameter N for a specific pool. See `nfactor`.
 
 
 ## CLI-only options
