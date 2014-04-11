@@ -2340,7 +2340,7 @@ static void get_statline(char *buf, size_t bufsiz, struct cgpu_info *cgpu)
 
 	snprintf(buf, bufsiz, "%s%d ", cgpu->drv->name, cgpu->device_id);
 	cgpu->drv->get_statline_before(buf, bufsiz, cgpu);
-	tailsprintf(buf, bufsiz, "(%ds):%s (avg):%sh/s | A:%.0f R:%.0f HW:%d WU:%.3f/m",
+	tailsprintf(buf, bufsiz, "(%ds):%s (avg):%sh/s | A:%.2f R:%.2f HW:%d WU:%.3f/m",
 		opt_log_interval,
 		displayed_rolling,
 		displayed_hashes,
@@ -2460,7 +2460,7 @@ static void curses_print_devstatus(struct cgpu_info *cgpu, int count)
 	wu = cgpu->diff1 / dev_runtime * 60;
 
 	wmove(statuswin, devcursor + count, 0);
-	cg_wprintw(statuswin, "%s %*d: ", cgpu->drv->name, dev_width, cgpu->device_id);
+	cg_wprintw(statuswin, "%s %*d:", cgpu->drv->name, dev_width, cgpu->device_id);
 	logline[0] = '\0';
 	cgpu->drv->get_statline_before(logline, sizeof(logline), cgpu);
 	cg_wprintw(statuswin, "%s", logline);
@@ -2495,7 +2495,7 @@ static void curses_print_devstatus(struct cgpu_info *cgpu, int count)
 	adj_width(cgpu->hw_errors, &hwwidth);
 	adj_width(wu, &wuwidth);
 
-	cg_wprintw(statuswin, "/%6s | A:%*.0f R:%*.0f (%*.1f%%) HW:%*d WU:%*.3f/m",
+	cg_wprintw(statuswin, "/%6s | A:%*.2f R:%*.2f (%*.1f%%) HW:%*d WU:%*.3f/m",
 			displayed_hashes,
 			dawidth, cgpu->diff_accepted,
 			drwidth, cgpu->diff_rejected,
@@ -5305,7 +5305,7 @@ static void hashmeter(int thr_id, struct timeval *diff,
 	suffix_string(dr64, displayed_rolling, sizeof(displayed_rolling), 4);
 
 	snprintf(statusline, sizeof(statusline),
-		"%s(%ds):%s (avg):%sh/s | A:%.0f  R:%.0f  HW:%d  WU:%.3f/m",
+		"%s(%ds):%s (avg):%sh/s | A:%.2f  R:%.2f  HW:%d  WU:%.3f/m",
 		want_per_device_stats ? "ALL " : "",
 		opt_log_interval, displayed_rolling, displayed_hashes,
 		total_diff_accepted, total_diff_rejected, hw_errors,
