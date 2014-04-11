@@ -2,6 +2,7 @@
 
 ## Version 4.2.0 - TBA
 
+* Forward-port changes from `ckolivas/cgminer` up to 3.12.3., and then some (up to 133252175b90159d18151b004bf767d5a43812ea).
 * Adaptive-N-factor algorithm support (by _Bufius_, _Zuikkis_ and
   _veox_). For details on choosing the algorithm, see
   `doc/configuration.md`.
@@ -12,6 +13,24 @@
 * Multiple `--name` parsing should now work as expected (by _troky_).
 * `--coin` configuration parameter to specify a freeform pool
   description (by _troky_).
+* Added new kernels for cpu coins
+  quark --quarkcoin
+  qubit --qubitcoin
+  dark --darkcoin
+  myriad --myriadcoin-groestl
+  ink --inkcoin
+  anime --animecoin
+  fugue --fuguecoin
+  sif --sifcoin
+  groestl --groestlcoin
+  twe --twecoin
+* A new option was added: --difficulty-multiplier. 
+  It allows to set stratum difficulty multiplier. 
+  For QubitCoin, Quark and Animecoin it will be usually 256. 
+  For Groestlcoin, Fuguecoin and Twecoin it will be usually 0.0039062500 (1/256). 
+  Default value is 1.0. If you have "share above target" errors then set it to 256. 
+  If difficulty required by pool is strangely large, set it to 0.0039062500 (1/256). 
+  Other values are unlikely to be used. Hopefully this will fix all remaining stratum problems.
 
 
 ## Version 4.1.153 - 14th March 2014
